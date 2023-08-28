@@ -1,0 +1,114 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
+@layer utilities {
+    .rtl {
+        direction: rtl;
+    }
+}
+/* Replace the existing CSS with the following styles */
+
+.my-masonry-grid {
+  display: flex;
+  margin-left: -16px; /* Adjust as needed */
+  width: auto;
+  justify-content: center; /* To center the content horizontally */
+}
+
+.my-masonry-grid_column {
+  padding-left: 16px; /* Adjust as needed */
+  background-clip: padding-box;
+}
+
+/* Add vertical spacing between testimonial items */
+.my-masonry-grid_column > div:not(:first-child) {
+  margin-top: 20px; /* Adjust the vertical spacing as needed */
+}
+
+/* Adjust the breakpoint columns as needed */
+@media (max-width: 700px) {
+  .my-masonry-grid {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1100px) {
+  .my-masonry-grid {
+    margin-left: 0;
+  }
+}
+
+
+body {
+  background: white;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+#text {
+  color: white;
+  font-size: 9px;
+  font-weight: 1000;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.container {
+  position: relative;
+  height: 250vh;
+}
+
+.circle {
+  position: absolute;
+  top: 35%; /* Adjust the vertical position */
+  left: 17%; /* Adjust the horizontal position */
+  transform: translate(-50%, -50%); /* Center the circle text */
+  z-index: 2; /* Set a higher z-index to make it appear above the background image */
+}
+
+
+.fixed {
+  position: fixed;
+}
+
+.scroll {
+  position: relative;
+  width: 100vw;
+  background-color: boxify-bg-light-dark;
+  overflow: hidden;
+  z-index: 1;
+  margin: 0;
+  padding: 10;
+}
+
+.m-scroll {
+  overflow: hidden;
+  height: 10%;
+  white-space: nowrap;
+  animation: scrollText 90s infinite linear;
+  margin: 10;
+  font-size: 0;
+  display: flex;
+  justify-content: 
+  space-between;
+  width: 400%;
+}
+
+span {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+@keyframes scrollText {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

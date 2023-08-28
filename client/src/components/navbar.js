@@ -1,41 +1,39 @@
 import React from "react";
  
-// We import bootstrap to make our application look better.
-import "bootstrap/dist/css/bootstrap.css";
- 
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
  
 // Here, we display our Navbar
 export default function Navbar() {
- return (
-   <div>
-     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-       <NavLink className="navbar-brand" to="/">
-       <img style={{"width" : 18 + '%'}} src="\remergelogo.jpeg"></img>
-       </NavLink>
-       <button
-         className="navbar-toggler"
-         type="button"
-         data-toggle="collapse"
-         data-target="#navbarSupportedContent"
-         aria-controls="navbarSupportedContent"
-         aria-expanded="false"
-         aria-label="Toggle navigation"
-       >
-         <span className="navbar-toggler-icon"></span>
-       </button>
- 
-       <div className="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul className="navbar-nav ml-auto">
-           <li className="nav-item">
-             <NavLink className="nav-link" to="/create">
-               Create Record
-             </NavLink>
-           </li>
-         </ul>
-       </div>
-     </nav>
-   </div>
+return (
+  <header class="bg-white">
+
+  <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+    <div class="flex lg:flex-1">
+      <a href="#" class="-m-1.5 p-1.5">
+        <span class="sr-only">Remerge</span>
+        <img class="h-8 w-auto" src="/images/logo.png" alt=""></img>
+      </a>
+    </div>
+    <div class="flex lg:hidden">
+      <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+        <span class="sr-only">Open main menu</span>
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+    <div class="hidden lg:flex lg:gap-x-12">
+
+      <a href="#" class="text-sm font-regular leading-6 text-gray-900">Product</a>
+      <a href="#" class="text-sm font-regular leading-6 text-gray-900">Features</a>
+      <a href="#" class="text-sm font-regular leading-6 text-gray-900">Marketplace</a>
+      <a href="#" class="text-sm font-regular leading-6 text-gray-900">Company</a>
+    </div>
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </nav>
+</header>
  );
 }
