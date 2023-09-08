@@ -8,6 +8,7 @@ const Record = (props) => (
    <td>{props.record.level}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
+     <Link className="btn btn-link" to={`/${props.record._id}/resumes`}>Resumes</Link> |
      <button className="btn btn-link"
        onClick={() => {
          props.deleteRecord(props.record._id);
@@ -25,7 +26,7 @@ export default function RecordList() {
  // This method fetches the records from the database.
  useEffect(() => {
    async function getRecords() {
-     const response = await fetch(`http://localhost:5050/record/`);
+     const response = await fetch(`http://localhost:5050/record/`, {method: "GET"});
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;

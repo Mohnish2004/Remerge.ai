@@ -8,6 +8,8 @@ import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
+import ResumeList from "./components/ResumeList"; 
+import CreateResume from "./components/CreateResume";
  
 const App = () => {
  return (
@@ -16,6 +18,8 @@ const App = () => {
      <Routes>
        <Route exact path="/" element={<RecordList />} />
        <Route path="/edit/:id" element={<Edit />} />
+       <Route path="/:id/resumes" element={<ResumeList/>} />
+       <Route path="/:id/resumes/create" element={<CreateResume/>} />
        <Route path="/create" element={<Create />} />
      </Routes>
    </div>
