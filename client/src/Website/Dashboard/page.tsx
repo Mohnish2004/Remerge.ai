@@ -322,9 +322,9 @@ export default function Example() {
 
   <div className="w-full pt-10 px-4 sm:px-6 md:px-8 lg:pl-72 bg-gray-100">
     <header>
-      <p className="mb-2 text-sm font-semibold text-blue-600">Starter Pages & Examples</p>
-      <h1 className="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Application Layout: Sidebar & Header using Tailwind CSS</h1>
-      <p className="mt-2 text-lg text-gray-800 dark:text-gray-400">This is a simple application layout with sidebar and header examples using Tailwind CSS.</p>
+      <p className="mb-2 text-sm font-semibold text-blue-600">Header</p>
+      <h1 className="block text-2xl font-bold text-gray-800 sm:text-3xl dark:text-white">Application Layout</h1>
+      <p className="mt-2 text-lg text-gray-800 dark:text-gray-400">subheadings can go hear</p>
       <div className="mt-5 flex flex-col items-center gap-2 sm:flex-row sm:gap-3">
       <br></br>
       <br></br>
