@@ -12,19 +12,18 @@ import Apply from "./Website/Application/page.tsx";
 import Profile from "./Website/Profile/page.tsx";
 import Footer from "./components/footer";
 import Auth from "./Website/Authtest1/page.tsx";
-import { useEffect } from "react";
-
-
-
-
-
-
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 
 const App = () => {
+  const [ user, setUser ] = useState({});
 function handleCallebackResponse(response){
-console.log("Encoded Token" + response.credential);
+  //console.log("Encoded Token" + response.credential);
+  var userObject = jwt_decode(response.credential);
+  console.log(userObject);
+  setUser(userObject);
+  localStorage.setItem('logged-in?', '1');
 }
-
 useEffect(() => {
   /* global google */
   google.accounts.id.initialize({
@@ -43,7 +42,13 @@ useEffect(() => {
 
   return (
     <div>
-      {!isDashboardRoute && <Navbar />}
+      {user &&
+          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+            <img src = {user.picture}></img>
+            <h3>{user.name}</h3>
+          </div>  
+        }
+        {Object.keys(user).length === 0 && !isDashboardRoute && <Navbar/>}
       <Routes>
         <Route exact path="/" element={<Create />} />
         /*<Route path="/dashboard" element={<Dash />} />*/
@@ -55,7 +60,6 @@ useEffect(() => {
         <Route path="/auth" element={<Auth />} />
       </Routes>
       <Footer/>
-
     </div>
   );
 };

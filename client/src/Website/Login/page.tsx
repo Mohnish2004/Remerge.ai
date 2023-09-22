@@ -1,5 +1,5 @@
 import React from "react";
-
+import App from "../../App";
 export default () => {
     return (
         <main className="w-full flex">
