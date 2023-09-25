@@ -1,7 +1,64 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import axios from "axios";
 
 
-export default () => {
+const Signup = () => {
+    const navigate = useNavigate();
+    const [inputValue, setInputValue] = useState({
+      email: "",
+      password: "",
+      username: "",
+    });
+    const { email, password, username } = inputValue;
+    const handleOnChange = (e) => {
+      const { name, value } = e.target;
+      setInputValue({
+        ...inputValue,
+        [name]: value,
+      });
+    };
+  
+    const handleError = (err) =>
+      toast.error(err, {
+        position: "bottom-left",
+      });
+    const handleSuccess = (msg) =>
+      toast.success(msg, {
+        position: "bottom-right",
+      });
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const { data } = await axios.post(
+          "http://localhost:5050/signup",
+          {
+            ...inputValue,
+          },
+          { withCredentials: true }
+        );
+        const { success, message } = data;
+        if (success) {
+          handleSuccess(message);
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
+        } else {
+          handleError(message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      setInputValue({
+        ...inputValue,
+        email: "",
+        password: "",
+        username: "",
+      });
+    };
+  
     return (
         <main className="w-full flex">
             <div className="relative flex-1 hidden items-center justify-center h-screen bg-white lg:flex">
@@ -65,48 +122,59 @@ export default () => {
                         <p className="inline-block w-fit text-sm bg-white px-2 absolute -top-2 inset-x-0 mx-auto">Or continue with</p>
                     </div>
                     <form
-                        onSubmit={(e) => e.preventDefault()}
+                        onSubmit={handleSubmit}
                         className="space-y-5"
                     >
                         <div>
-                            <label className="font-medium">
+                            <label className="font-medium" htmlFor="email">
                                 Name
                             </label>
                             <input
                                 type="text"
                                 required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                                name = "username"
+                                value = {username}
+                                onChange = {handleOnChange}
                             />
                         </div>
                         <div>
-                            <label className="font-medium">
+                            <label className="font-medium" htmlFor="email">
                                 Email
                             </label>
                             <input
                                 type="email"
                                 required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                                name = "email"
+                                value = {email}
+                                onChange = {handleOnChange}
                             />
                         </div>
                         <div>
-                            <label className="font-medium">
+                            <label className="font-medium" htmlFor="email">
                                 Password
                             </label>
                             <input
                                 type="password"
                                 required
                                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                                name = "password"
+                                value = {password}
+                                onChange = {handleOnChange}
                             />
                         </div>
-                        <a
-    href="/dashboard"
+                        <button
+    type="submit"
     className="block w-full text-center px-4 py-2 text-white font-medium bg-gray-600 hover:bg-gray-500 active:bg-gray-600 rounded-lg duration-150"
 >
     Create account
-</a>
+</button>
                     </form>
                 </div>
             </div>
         </main>
-    )
-}
+    );
+  };
+  
+  export default Signup;
