@@ -25,14 +25,15 @@ async function Signup(req, res, next){
       res
         .status(201)
         .json({ message: "User signed in successfully", success: true, user });
+        console.log(res);
       next();
+      
     } catch (error) {
       console.error(error);
     }
   };
 
   async function Login(req, res, next){
-    console.log("dvrg")
     try {
       
       const { email, password } = req.body;
@@ -52,6 +53,7 @@ async function Signup(req, res, next){
        res.cookie("token", token, {
          withCredentials: true,
          httpOnly: false,
+         secure : false,
        });
        res.status(201).json({ message: "User logged in successfully", success: true });
        next()

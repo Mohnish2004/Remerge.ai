@@ -13,10 +13,10 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
-
+app.use(cookieParser());
 app.use("/", authRoute);
 app.use("/record", records);
-app.use(cookieParser());
+
 
 // start the Express server
 app.listen(PORT, () => {
