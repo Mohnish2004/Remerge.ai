@@ -2,7 +2,6 @@ import User from "../Models/UserModel.mjs";
 import jwt from "jsonwebtoken";
 
 function userVerification(req, res){
-  console.log("this is the cookie -> " + req.cookies.token)
   const token = req.cookies.token
   if (!token) {
     return res.json({ status: false })
@@ -12,7 +11,7 @@ function userVerification(req, res){
      return res.json({ status: false })
     } else {
       const user = await User.findById(data.id)
-      if (user) return res.json({ status: true, user: user.username })
+      if (user) return res.json({ status: true, user: user.username, userid : user._id })
       else return res.json({ status: false })
     }
   })
